@@ -1,0 +1,54 @@
+package main;
+
+public class Smartdevices {
+    private String deviceName;
+    private boolean isOn;
+
+    private static int activeDeviceCount = 0;
+
+    public Smartdevices(String name) {
+        this.deviceName = name;
+        this.isOn = false;
+    }
+
+    public void turnOn() {
+        if (!isOn) {
+            isOn = true;
+            activeDeviceCount++;
+            System.out.println(deviceName + " is now ON.");
+        }
+    }
+
+    public void turnOff() {
+        if (isOn) {
+            isOn = false;
+            activeDeviceCount--;
+            System.out.println(deviceName + " is now OFF.");
+        }
+    }
+
+    public static int getActiveDeviceCount() {
+        return activeDeviceCount;
+    }
+}
+package main;
+
+public class Main {
+    public static void main(String[] args) {
+        Smartdevices tv = new Smartdevices("Smart TV");
+        Smartdevices speaker = new Smartdevices("Smart Speaker");
+        Smartdevices bulb = new Smartdevices("Smart Bulb");
+
+        tv.turnOn();
+        speaker.turnOn();
+
+        System.out.println("Active Devices: " + Smartdevices.getActiveDeviceCount());
+
+        bulb.turnOn();
+        System.out.println("Active Devices: " + Smartdevices.getActiveDeviceCount());
+
+        speaker.turnOff();
+        System.out.println("Active Devices: " + Smartdevices.getActiveDeviceCount());
+    }
+}
+
